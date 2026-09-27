@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Softora | Web & Software Engineering</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@600&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -101,10 +101,25 @@
     /* Header */
     header {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       align-items: center;
-      padding: 14px 24px;
+      padding: 12px 24px;
       border-bottom: 1px solid #f3f4f6;
+      background: #ffffff;
+    }
+
+    /* Live Digital Clock Style */
+    .live-clock-box {
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-family: 'Orbitron', monospace, sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #374151;
+      letter-spacing: 1px;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.03);
     }
 
     .btn-contact-top {
@@ -241,8 +256,6 @@
     .service-desc { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 25px; }
 
     .cta-box { background: #e8f0fe; border: 1px solid #d2e3fc; border-radius: 8px; padding: 20px; text-align: center; }
-    .cta-btn-group { display: flex; gap: 12px; justify-content: center; margin-top: 12px; }
-    .cta-btn { background: #25D366; color: #fff; padding: 8px 18px; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 12px; display: inline-flex; align-items: center; gap: 6px; }
 
     /* Contact Popup Modal */
     .contact-modal-overlay {
@@ -300,14 +313,18 @@
         <p><i class="fas fa-envelope"></i> <strong>Email:</strong> rohanmrj75@gmail.com</p>
         <p><i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> Mau Pakar, Maharajganj Nagar Palika Parishad, Maharajganj</p>
       </div>
-      <a href="https://wa.me/919792299575" target="_blank" class="cta-btn" style="width: 100%; justify-content: center;">
-        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+      <a href="https://wa.me/919792299575" target="_blank" class="btn-contact-top" style="display: inline-flex; width: 100%; justify-content: center; align-items: center; gap: 6px; text-decoration: none; margin-top: 10px;">
+        <i class="fab fa-whatsapp" style="font-size: 16px;"></i> Chat on WhatsApp
       </a>
     </div>
   </div>
 
+  <!-- HEADER WITH LIVE CLOCK & CONTACT BUTTON -->
   <header>
-    <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+    <div class="live-clock-box" id="liveClock">
+      00:00:00 AM
+    </div>
+    <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
   </header>
 
   <main id="main-workspace">
@@ -320,7 +337,7 @@
 
     <div class="search-container">
       <div class="search-box">
-        <input type="text" placeholder="सर्च करें...">
+        <input type="text" placeholder="Search services...">
         <button class="search-btn"><i class="fas fa-search"></i></button>
       </div>
     </div>
@@ -331,38 +348,38 @@
       <a href="#" class="social-icon social-youtube"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- 4 MAIN CARDS -->
+    <!-- 4 MAIN CARDS IN ENGLISH -->
     <div class="services-container">
       <div class="card-item" onclick="openModal('view-web')">
         <div class="card-header">
           <i class="fas fa-globe"></i>
-          <h3>वेबसाइट पेज</h3>
+          <h3>Websites</h3>
         </div>
-        <p>दुकानों व कंपनियों के लिए व्यावसायिक वेबसाइट्स व ई-कॉमर्स स्टोर।</p>
+        <p>Professional websites & E-commerce stores for shops and companies.</p>
       </div>
 
       <div class="card-item" onclick="openModal('view-software')">
         <div class="card-header">
           <i class="fas fa-laptop-code"></i>
-          <h3>सॉफ्टवेयर पेज</h3>
+          <h3>Software</h3>
         </div>
-        <p>बिलिंग, स्टॉक, इन्वेंट्री व कस्टम अकाउंटिंग सॉफ्टवेयर।</p>
+        <p>Billing, stock management, inventory, and custom accounting software.</p>
       </div>
 
       <div class="card-item" onclick="openModal('view-app')">
         <div class="card-header">
           <i class="fas fa-mobile-alt"></i>
-          <h3>मोबाइल ऐप पेज</h3>
+          <h3>Mobile Apps</h3>
         </div>
-        <p>एंड्रॉइड और iOS ऐप्स – ऑनलाइन ऑर्डरिंग और कस्टमर मैनेजमेंट।</p>
+        <p>Android and iOS apps for online ordering and customer management.</p>
       </div>
 
       <div class="card-item" onclick="openModal('view-seo')">
         <div class="card-header">
           <i class="fas fa-chart-line"></i>
-          <h3>SEO व डिजिटल पेज</h3>
+          <h3>SEO & Digital</h3>
         </div>
-        <p>गूगल मैप्स, लोकल सर्च रैंकिंग और डिजिटल मार्केटिंग सॉल्यूशंस।</p>
+        <p>Google Maps optimization, local search rankings, and digital marketing.</p>
       </div>
     </div>
 
@@ -372,11 +389,11 @@
         <button class="close-btn" onclick="closeModal('view-web')"><i class="fas fa-arrow-left"></i> Close</button>
         <div class="service-title-box">
           <i class="fas fa-globe"></i>
-          <h1>वेबसाइट डेवलपमेंट सर्विस</h1>
+          <h1>Website Development Services</h1>
         </div>
-        <p class="service-desc">हम आपकी दुकान, कंपनी या स्कूल के लिए आधुनिक वेबसाइट बनाते हैं।</p>
+        <p class="service-desc">We build modern websites for your shop, company, or institution.</p>
         <div class="cta-box">
-          <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+          <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
         </div>
       </div>
     </div>
@@ -386,11 +403,11 @@
         <button class="close-btn" onclick="closeModal('view-software')"><i class="fas fa-arrow-left"></i> Close</button>
         <div class="service-title-box">
           <i class="fas fa-laptop-code"></i>
-          <h1>कस्टम सॉफ्टवेयर डेवलपमेंट</h1>
+          <h1>Custom Software Development</h1>
         </div>
-        <p class="service-desc">अपनी दुकान का बिलिंग और स्टॉक आसानी से मैनेज करें।</p>
+        <p class="service-desc">Easily manage your store's billing, inventory, and stock.</p>
         <div class="cta-box">
-          <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+          <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
         </div>
       </div>
     </div>
@@ -400,11 +417,11 @@
         <button class="close-btn" onclick="closeModal('view-app')"><i class="fas fa-arrow-left"></i> Close</button>
         <div class="service-title-box">
           <i class="fas fa-mobile-alt"></i>
-          <h1>मोबाइल ऐप डेवलपमेंट</h1>
+          <h1>Mobile App Development</h1>
         </div>
-        <p class="service-desc">एंड्रॉइड और iOS ऐप्स – ऑनलाइन ऑर्डरिंग और कस्टमर मैनेजमेंट।</p>
+        <p class="service-desc">Android and iOS apps for online ordering and customer management.</p>
         <div class="cta-box">
-          <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+          <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
         </div>
       </div>
     </div>
@@ -414,11 +431,11 @@
         <button class="close-btn" onclick="closeModal('view-seo')"><i class="fas fa-arrow-left"></i> Close</button>
         <div class="service-title-box">
           <i class="fas fa-chart-line"></i>
-          <h1>SEO व डिजिटल मार्केटिंग</h1>
+          <h1>SEO & Digital Marketing</h1>
         </div>
-        <p class="service-desc">गूगल मैप्स, लोकल सर्च रैंकिंग और डिजिटल मार्केटिंग सॉल्यूशंस।</p>
+        <p class="service-desc">Google Maps, local search rankings, and digital marketing solutions.</p>
         <div class="cta-box">
-          <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+          <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
         </div>
       </div>
     </div>
@@ -431,7 +448,24 @@
 
   <!-- JAVASCRIPT CONTROLS -->
   <script>
-    // 1. Welcome Popup Logic
+    // 1. Live Digital Clock Logic
+    function updateClock() {
+      const now = new Date();
+      let hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const ampm = hours >= 12 ? 'PM' : 'AM';
+      
+      hours = hours % 12;
+      hours = hours ? hours : 12; 
+      const formattedHours = String(hours).padStart(2, '0');
+      
+      document.getElementById('liveClock').innerText = `${formattedHours}:${minutes}:${seconds} ${ampm}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 2. Welcome Popup Logic (Fixed)
     let timeLeft = 4;
     const timerElement = document.getElementById('seconds');
     const welcomePopup = document.getElementById('welcomePopup');
@@ -451,7 +485,7 @@
       }
     }, 1000);
 
-    // 2. Open / Close Service Modals
+    // 3. Open / Close Service Modals
     function openModal(modalId) {
       document.getElementById(modalId).style.display = 'block';
     }
@@ -460,7 +494,7 @@
       document.getElementById(modalId).style.display = 'none';
     }
 
-    // 3. Open / Close Contact Modal
+    // 4. Open / Close Contact Modal
     function openContactModal() {
       document.getElementById('contactModal').style.display = 'flex';
     }
