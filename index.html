@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Softora | Software & Web Engineering</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
   
   <style>
     * {
@@ -26,7 +26,6 @@
       overflow-x: hidden;
     }
 
-    /* Subtle Futuristic Cyber Grid Background Effect */
     body::before {
       content: "";
       position: absolute;
@@ -88,7 +87,7 @@
       border: 1px solid rgba(26, 115, 232, 0.3);
     }
 
-    /* Softora Logo with Robotic Glow */
+    /* Logo */
     .logo-container { text-align: center; margin-bottom: 10px; }
     .logo-text { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 700; letter-spacing: -1.5px; text-shadow: 0 0 20px rgba(66, 133, 244, 0.3); }
     .s-blue { color: #60a5fa; }
@@ -108,7 +107,7 @@
       font-weight: 600;
     }
 
-    /* Header with Pure Digital Robotic Clock on Left & Contact on Right */
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
@@ -117,6 +116,12 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(11, 15, 25, 0.7);
       backdrop-filter: blur(5px);
+    }
+
+    .header-right-btns {
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
     .robotic-clock {
@@ -129,17 +134,17 @@
 
     #live-clock {
       font-family: 'Orbitron', sans-serif;
-      font-size: clamp(11px, 2.5vw, 14px);
+      font-size: clamp(10px, 2.2vw, 13px);
       font-weight: 800;
       color: #38bdf8;
-      letter-spacing: 1.5px;
+      letter-spacing: 1px;
       text-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
     }
 
-    .btn-contact-top {
+    .btn-contact-top, .btn-settings-top {
       background: linear-gradient(135deg, #1a73e8, #0d47a1);
       color: #fff;
-      padding: 7px 15px;
+      padding: 7px 14px;
       border-radius: 6px;
       font-weight: 600;
       font-size: 12px;
@@ -147,8 +152,11 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(26,115,232,0.4);
       transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .btn-contact-top:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-contact-top:hover, .btn-settings-top:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* Main Workspace */
     #main-workspace {
@@ -160,7 +168,6 @@
       flex: 1;
     }
 
-    /* FRONT PAGE BANNER */
     .hero-robotic-banner {
       width: 100%;
       max-width: 600px;
@@ -201,7 +208,7 @@
     .search-container {
       width: 100%;
       max-width: 560px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .search-box {
@@ -239,6 +246,336 @@
       font-size: 16px;
     }
 
+    /* Software AI Clickable Box */
+    .software-ai-box-container {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .software-ai-box {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(26, 115, 232, 0.2);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .software-ai-box:hover {
+      border-color: #60a5fa;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    }
+    .software-ai-box i { color: #60a5fa; font-size: 14px; }
+
+    /* GEMINI STYLE CHAT MODAL INTERFACE */
+    .ai-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(13, 17, 23, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 10002;
+      display: none;
+      flex-direction: column;
+      padding: 15px;
+    }
+
+    .ai-chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #30363d;
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .ai-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ai-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ai-chat-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #f0f6fc;
+    }
+
+    /* Gemini Top Buttons */
+    .ai-top-btn {
+      background: transparent;
+      border: none;
+      color: #8b949e;
+      font-size: 16px;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+    .ai-top-btn:hover { background: #30363d; color: #f0f6fc; }
+
+    /* DROPDOWN MENU FOR THREE DOTS */
+    .ai-dropdown-menu {
+      position: absolute;
+      top: 55px;
+      right: 25px;
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+      display: none;
+      flex-direction: column;
+      width: 180px;
+      z-index: 10005;
+      overflow: hidden;
+    }
+    .ai-dropdown-menu button {
+      background: transparent;
+      border: none;
+      color: #c9d1d9;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 13px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+    .ai-dropdown-menu button:hover { background: #30363d; color: #fff; }
+
+    /* SIDEBAR / DRAWER FOR TWO LINES MENU */
+    .ai-sidebar {
+      position: fixed;
+      top: 0; left: -280px; width: 280px; height: 100vh;
+      background: #111827;
+      border-right: 1px solid #1f2937;
+      z-index: 10006;
+      transition: 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+    .ai-sidebar.open { left: 0; }
+    .ai-sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .ai-sidebar-header h3 { font-size: 15px; color: #fff; }
+    .sidebar-chats-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .sidebar-chat-item {
+      background: #1f2937;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      color: #9ca3af;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .sidebar-chat-item:hover { background: #374151; color: #fff; }
+
+    .ai-chat-body {
+      flex: 1;
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 20px 0;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .ai-msg {
+      padding: 14px 18px;
+      border-radius: 14px;
+      max-width: 80%;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    .ai-msg.bot { background: #21262d; color: #c9d1d9; align-self: flex-start; border: 1px solid #30363d; }
+    .ai-msg.user { background: #30363d; color: #f0f6fc; align-self: flex-end; border: 1px solid #484f58; }
+    .ai-msg img { max-width: 100%; border-radius: 8px; margin-top: 8px; }
+
+    .ai-chat-footer-wrapper {
+      max-width: 850px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .image-preview-container {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: #21262d;
+      padding: 6px 12px;
+      border-radius: 8px;
+      width: fit-content;
+      border: 1px solid #30363d;
+    }
+    .image-preview-container img { width: 40px; height: 40px; object-fit: cover; border-radius: 4px; }
+    .image-preview-container span { font-size: 12px; color: #8b949e; }
+
+    .ai-chat-footer {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 32px;
+      padding: 10px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      width: 100%;
+    }
+
+    .ai-chat-footer input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f0f6fc;
+      font-size: 14px;
+    }
+
+    .ai-chat-footer input::placeholder {
+      color: #8b949e;
+    }
+
+    .ai-tool-btn {
+      background: transparent;
+      border: none;
+      color: #8b949e;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+    }
+    .ai-tool-btn:hover { background: #30363d; color: #f0f6fc; }
+
+    /* VOICE INPUT POPUP DIALOG */
+    .voice-prompt-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 20000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .voice-prompt-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    }
+
+    .voice-prompt-card h3 { color: #f0f6fc; font-size: 16px; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .voice-prompt-card p { font-size: 12px; color: #8b949e; margin-bottom: 15px; }
+    
+    .voice-prompt-card input {
+      width: 100%;
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    .voice-action-btns { display: flex; gap: 10px; }
+    .voice-action-btns button { flex: 1; padding: 8px; border-radius: 6px; font-weight: 600; font-size: 12px; border: none; cursor: pointer; }
+    .btn-send-voice { background: #1a73e8; color: #fff; }
+    .btn-cancel-voice { background: #30363d; color: #8b949e; }
+
+    /* SETTINGS MODAL */
+    .settings-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(3, 7, 18, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 10003;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .settings-card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      padding: 25px;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.7);
+    }
+
+    .settings-card h2 { color: #f0f6fc; font-size: 18px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+    .setting-group { margin-bottom: 16px; }
+    .setting-group label { display: block; font-size: 12px; color: #8b949e; margin-bottom: 6px; font-weight: 600; }
+    .setting-group select {
+      width: 100%;
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: #f0f6fc;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+    }
+
     .social-bar { display: flex; gap: 14px; margin-bottom: 22px; }
     .social-icon {
       width: 36px; height: 36px; border-radius: 50%;
@@ -252,7 +589,7 @@
     .social-instagram { color: #E4405F; }
     .social-youtube { color: #FF0000; }
 
-    /* UNIFIED SERVICES GRID */
+    /* Services Grid */
     .services-container {
       width: 100%;
       max-width: 850px;
@@ -319,7 +656,7 @@
     .card-header h3 { font-size: 12px; font-weight: 600; color: #ffffff; }
     .card-item p { font-size: 10.5px; color: #9ca3af; line-height: 1.3; flex-grow: 1; }
 
-    /* Service Modals Overlay */
+    /* Modals Overlay */
     .full-overlay {
       position: fixed;
       top: 0; left: 0; width: 100vw; height: 100vh;
@@ -421,6 +758,32 @@
     </div>
   </div>
 
+  <!-- VOICE PROMPT FALLBACK MODAL -->
+  <div class="voice-prompt-overlay" id="voicePromptModal">
+    <div class="voice-prompt-card">
+      <h3><i class="fas fa-microphone" style="color: #60a5fa;"></i> Voice / Text Input</h3>
+      <p>माइक ब्लॉक होने पर यहाँ लिखकर या बोलकर भेजें:</p>
+      <input type="text" id="voicePromptInput" placeholder="अपना संदेश यहाँ लिखें..." onkeypress="handleVoicePromptEnter(event)">
+      <div class="voice-action-btns">
+        <button class="btn-cancel-voice" onclick="closeVoicePrompt()">Cancel</button>
+        <button class="btn-send-voice" onclick="submitVoicePrompt()">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR DRAWER (TWO LINES MENU) -->
+  <div class="ai-sidebar" id="aiSidebar">
+    <div class="ai-sidebar-header">
+      <h3><i class="fas fa-bars"></i> Chat History</h3>
+      <button class="popup-close-btn" onclick="toggleSidebar()">&times;</button>
+    </div>
+    <div class="sidebar-chats-list">
+      <div class="sidebar-chat-item" onclick="startNewChat()">✨ नई चैट शुरू करें</div>
+      <div class="sidebar-chat-item">💡 सॉफ्टवेयर बनवाने के बारे में</div>
+      <div class="sidebar-chat-item">🌐 वेबसाइट प्राइसिंग इंक्वायरी</div>
+    </div>
+  </div>
+
   <!-- CONTACT MODAL -->
   <div class="contact-modal-overlay" id="contactModal">
     <div class="contact-card">
@@ -437,12 +800,91 @@
     </div>
   </div>
 
+  <!-- SETTINGS MODAL -->
+  <div class="settings-modal-overlay" id="settingsModal">
+    <div class="settings-card">
+      <button class="popup-close-btn" onclick="closeSettingsModal()">&times;</button>
+      <h2><i class="fas fa-cog" style="color: #60a5fa;"></i> AI Voice Settings (Free)</h2>
+      
+      <div class="setting-group">
+        <label>Voice Type (आवाज़ का प्रकार - फ्री)</label>
+        <select id="voiceTypeSelect">
+          <option value="ai">✨ AI Default Voice (Standard)</option>
+          <option value="robot">🤖 Robot Voice</option>
+          <option value="man">👨‍💼 Man Voice (पुरुष)</option>
+          <option value="woman">👩‍💼 Woman Voice (महिला)</option>
+        </select>
+      </div>
+
+      <div class="setting-group">
+        <label>Speech Speed (बोलने की गति)</label>
+        <select id="voiceSpeedSelect">
+          <option value="1">Normal (सामान्य)</option>
+          <option value="1.25">Fast (तेज़)</option>
+          <option value="0.8">Slow (धीमी)</option>
+        </select>
+      </div>
+
+      <button class="btn-contact-top" style="width: 100%; justify-content: center; margin-top: 10px;" onclick="saveSettings()">Save Settings</button>
+    </div>
+  </div>
+
+  <!-- SOFTWARE AI CHAT MODAL INTERFACE -->
+  <div class="ai-modal-overlay" id="aiModal">
+    <div class="ai-chat-header">
+      <div class="ai-header-left">
+        <button class="ai-top-btn" onclick="toggleSidebar()" title="Menu"><i class="fas fa-bars"></i></button>
+        <button class="ai-top-btn" onclick="startNewChat()" title="New Chat"><i class="fas fa-pen-to-square"></i></button>
+        <div class="ai-chat-title">Software AI <span style="font-size: 10px; background: rgba(52,211,153,0.2); color: #34d399; padding: 2px 6px; border-radius: 4px;">Free Pro</span></div>
+      </div>
+      
+      <div class="ai-header-right">
+        <button class="ai-top-btn" onclick="toggleDropdownMenu()" title="More Options"><i class="fas fa-ellipsis-vertical"></i></button>
+        <button class="popup-close-btn" onclick="closeAiModal()" style="position: static;"><i class="fas fa-xmark"></i></button>
+      </div>
+
+      <!-- THREE DOTS DROPDOWN MENU -->
+      <div class="ai-dropdown-menu" id="aiDropdownMenu">
+        <button onclick="openSettingsModal()"><i class="fas fa-sliders"></i> Voice Settings</button>
+        <button onclick="alert('सॉफ्टोरा एआई - सभी फीचर्स आपके लिए पूरी तरह फ्री हैं!')"><i class="fas fa-circle-info"></i> About Free AI</button>
+        <button onclick="startNewChat()"><i class="fas fa-trash-can"></i> Clear Chat</button>
+      </div>
+    </div>
+    
+    <div class="ai-chat-body" id="aiChatBody">
+      <div class="ai-msg bot">नमस्ते! मैं **Software AI** हूँ। आपके सभी पेड फीचर्स अब इस AI में **पूरी तरह फ्री** कर दिए गए हैं। आप माइक, वॉइस, इमेज अटैचमेंट और सेटिंग्स का खुलकर इस्तेमाल कर सकते हैं!</div>
+    </div>
+    
+    <div class="ai-chat-footer-wrapper">
+      <div class="image-preview-container" id="imagePreviewBox">
+        <img id="previewImg" src="" alt="Preview">
+        <span id="previewName">Photo Attached</span>
+        <button onclick="removeImage()" style="background:none; border:none; color:#f85149; cursor:pointer; margin-left:auto;"><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="ai-chat-footer">
+        <label class="ai-tool-btn" title="Add Image / File (Free)">
+          <i class="fas fa-plus"></i>
+          <input type="file" id="imageInput" style="display:none;" accept="image/*" onchange="previewImage(event)">
+        </label>
+
+        <input type="text" id="aiUserInput" placeholder="Software AI से फ्री में पूछें..." onkeypress="handleAiEnter(event)">
+
+        <button class="ai-tool-btn" id="voiceBtn" title="Voice Input (Free)" onclick="toggleVoiceInput()"><i class="fas fa-microphone"></i></button>
+        <button class="ai-tool-btn" onclick="sendAiMessage()" title="Send" style="color: #f0f6fc;"><i class="fas fa-arrow-up"></i></button>
+      </div>
+    </div>
+  </div>
+
   <!-- HEADER -->
   <header>
     <div class="robotic-clock">
       <span id="live-clock">00:00:00</span>
     </div>
-    <button class="btn-contact-top" onclick="openContactModal()">Contact Us</button>
+    <div class="header-right-btns">
+      <button class="btn-settings-top" onclick="openSettingsModal()"><i class="fas fa-cog"></i> Settings</button>
+      <button class="btn-contact-top" onclick="openContactModal()">Contact</button>
+    </div>
   </header>
 
   <main id="main-workspace">
@@ -453,7 +895,6 @@
       <div class="logo-tagline">Software & Web Engineering</div>
     </div>
 
-    <!-- FRONT PAGE BANNER -->
     <div class="hero-robotic-banner">
       <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80" alt="Web Engineering">
       <div class="hero-banner-text">
@@ -468,74 +909,72 @@
       </div>
     </div>
 
+    <div class="software-ai-box-container">
+      <div class="software-ai-box" onclick="openAiModal()">
+        <i class="fas fa-brain"></i> Software AI
+      </div>
+    </div>
+
     <div class="social-bar">
       <a href="https://wa.me/919792299575" target="_blank" class="social-icon social-whatsapp"><i class="fab fa-whatsapp"></i></a>
       <a href="#" class="social-icon social-instagram"><i class="fab fa-instagram"></i></a>
       <a href="#" class="social-icon social-youtube"><i class="fab fa-youtube"></i></a>
     </div>
 
-    <!-- 4 MAIN CARDS -->
     <div class="services-container">
-      
-      <!-- Card 1 -->
       <div class="card-item" onclick="openModal('view-web')">
         <div class="card-img-box">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="वेबसाइट पेज">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80" alt="Website Page">
         </div>
         <div class="card-body-content">
           <div class="card-header">
             <i class="fas fa-globe"></i>
-            <h3>वेबसाइट पेज</h3>
+            <h3>Website Page</h3>
           </div>
-          <p>दुकानों व कंपनियों के लिए व्यावसायिक वेबसाइट्स व ई-कॉमर्स स्टोर।</p>
+          <p>Professional websites and e-commerce stores for shops & companies.</p>
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="card-item" onclick="openModal('view-software')">
         <div class="card-img-box">
-          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="सॉफ्टवेयर पेज">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80" alt="Software Page">
         </div>
         <div class="card-body-content">
           <div class="card-header">
             <i class="fas fa-laptop-code"></i>
-            <h3>सॉफ्टवेयर पेज</h3>
+            <h3>Software Page</h3>
           </div>
-          <p>बिलिंग, स्टॉक, इन्वेंट्री व कस्टम अकाउंटिंग सॉफ्टवेयर।</p>
+          <p>Billing, stock inventory, and custom business accounting software.</p>
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="card-item" onclick="openModal('view-app')">
         <div class="card-img-box">
-          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=400&q=80" alt="मोबाइल ऐप पेज">
+          <img src="https://images.unsplash.com/photo-1526498460520-4c246339dccb?auto=format&fit=crop&w=400&q=80" alt="Mobile App Page">
         </div>
         <div class="card-body-content">
           <div class="card-header">
             <i class="fas fa-mobile-alt"></i>
-            <h3>मोबाइल ऐप पेज</h3>
+            <h3>Mobile App Page</h3>
           </div>
-          <p>एंड्रॉइड और iOS ऐप्स – ऑनलाइन ऑर्डरिंग और कस्टमर मैनेजमेंट।</p>
+          <p>Android & iOS apps for online ordering and customer management.</p>
         </div>
       </div>
 
-      <!-- Card 4 -->
       <div class="card-item" onclick="openModal('view-seo')">
         <div class="card-img-box">
-          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80" alt="SEO व डिजिटल पेज">
+          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=400&q=80" alt="SEO & Digital Page">
         </div>
         <div class="card-body-content">
           <div class="card-header">
             <i class="fas fa-chart-line"></i>
-            <h3>SEO व डिजिटल पेज</h3>
+            <h3>SEO & Digital Page</h3>
           </div>
-          <p>गूगल मैप्स, लोकल सर्च रैंकिंग और डिजिटल मार्केटिंग सॉल्यूशंस।</p>
+          <p>Google Maps, local search ranking, and digital marketing solutions.</p>
         </div>
       </div>
-
     </div>
 
-    <!-- FULL PAGE MODAL 1 -->
     <div class="full-overlay" id="view-web">
       <div class="inner-container">
         <button class="close-btn" onclick="closeModal('view-web')"><i class="fas fa-arrow-left"></i> Close</button>
@@ -562,7 +1001,6 @@
       </div>
     </div>
 
-    <!-- FULL PAGE MODAL 2 -->
     <div class="full-overlay" id="view-software">
       <div class="inner-container">
         <button class="close-btn" onclick="closeModal('view-software')"><i class="fas fa-arrow-left"></i> Close</button>
@@ -594,23 +1032,24 @@
     <p>&copy; Softora Software & Web Engineering. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript for Popups and Clock -->
+  <!-- JavaScript -->
   <script>
-    // Live Clock Script
     function updateClock() {
       const now = new Date();
       let hours = now.getHours();
       let minutes = now.getMinutes();
       let seconds = now.getSeconds();
-      hours = hours < 10 ? '0' + hours : hours;
+      
+      hours = hours % 12;
+      hours = hours ? hours : 12;
       minutes = minutes < 10 ? '0' + minutes : minutes;
       seconds = seconds < 10 ? '0' + seconds : seconds;
+      
       document.getElementById('live-clock').innerText = `${hours}:${minutes}:${seconds}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Welcome Popup Timer & Close Logic
     let timeLeft = 4;
     const secondsSpan = document.getElementById('seconds');
     const welcomePopup = document.getElementById('welcomePopup');
@@ -625,12 +1064,9 @@
     }, 1000);
 
     function closeWelcomePopup() {
-      if (welcomePopup) {
-        welcomePopup.style.display = 'none';
-      }
+      if (welcomePopup) welcomePopup.style.display = 'none';
     }
 
-    // Contact Modal Logic
     function openContactModal() {
       document.getElementById('contactModal').style.display = 'flex';
     }
@@ -639,16 +1075,221 @@
       document.getElementById('contactModal').style.display = 'none';
     }
 
-    // Service Modals Logic
+    function openSettingsModal() {
+      document.getElementById('settingsModal').style.display = 'flex';
+      document.getElementById('aiDropdownMenu').style.display = 'none';
+    }
+
+    function closeSettingsModal() {
+      document.getElementById('settingsModal').style.display = 'none';
+    }
+
+    function saveSettings() {
+      alert("फ्री AI सेटिंग्स सफलतापूर्वक सेव हो गई हैं!");
+      closeSettingsModal();
+    }
+
+    function openAiModal() {
+      document.getElementById('aiModal').style.display = 'flex';
+    }
+
+    function closeAiModal() {
+      document.getElementById('aiModal').style.display = 'none';
+      document.getElementById('aiDropdownMenu').style.display = 'none';
+    }
+
+    // Toggle Sidebar Drawer (Two Lines)
+    function toggleSidebar() {
+      const sidebar = document.getElementById('aiSidebar');
+      sidebar.classList.toggle('open');
+    }
+
+    // Toggle Three Dots Menu
+    function toggleDropdownMenu() {
+      const menu = document.getElementById('aiDropdownMenu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    // New Chat (Pencil Icon)
+    function startNewChat() {
+      const chatBody = document.getElementById('aiChatBody');
+      chatBody.innerHTML = `<div class="ai-msg bot">नमस्ते! नई चैट शुरू हो चुकी है। आप जो चाहें पूछ सकते हैं, सभी फीचर्स पूरी तरह फ्री हैं!</div>`;
+      document.getElementById('aiDropdownMenu').style.display = 'none';
+      const sidebar = document.getElementById('aiSidebar');
+      sidebar.classList.remove('open');
+    }
+
+    let attachedImageSrc = null;
+
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          attachedImageSrc = e.target.result;
+          document.getElementById('previewImg').src = attachedImageSrc;
+          document.getElementById('previewName').innerText = file.name;
+          document.getElementById('imagePreviewBox').style.display = 'flex';
+        }
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function removeImage() {
+      attachedImageSrc = null;
+      document.getElementById('imagePreviewBox').style.display = 'none';
+      document.getElementById('imageInput').value = '';
+    }
+
+    // Voice Input with Instant Fallback Prompt
+    function toggleVoiceInput() {
+      const input = document.getElementById('aiUserInput');
+
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        document.getElementById('voicePromptModal').style.display = 'flex';
+        document.getElementById('voicePromptInput').focus();
+        return;
+      }
+
+      try {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'hi-IN';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.onstart = () => {
+          input.placeholder = "सुन रहा हूँ... बोलिए...";
+        };
+
+        recognition.onresult = (event) => {
+          const speechToText = event.results[0][0].transcript;
+          input.value = speechToText;
+          sendAiMessage();
+        };
+
+        recognition.onerror = () => {
+          document.getElementById('voicePromptModal').style.display = 'flex';
+          document.getElementById('voicePromptInput').focus();
+        };
+
+        recognition.onend = () => {
+          input.placeholder = "Software AI से फ्री में पूछें...";
+        };
+
+        recognition.start();
+      } catch (err) {
+        document.getElementById('voicePromptModal').style.display = 'flex';
+        document.getElementById('voicePromptInput').focus();
+      }
+    }
+
+    function closeVoicePrompt() {
+      document.getElementById('voicePromptModal').style.display = 'none';
+    }
+
+    function submitVoicePrompt() {
+      const val = document.getElementById('voicePromptInput').value.trim();
+      if (val) {
+        document.getElementById('aiUserInput').value = val;
+        document.getElementById('voicePromptInput').value = '';
+        closeVoicePrompt();
+        sendAiMessage();
+      }
+    }
+
+    function handleVoicePromptEnter(e) {
+      if (e.key === 'Enter') submitVoicePrompt();
+    }
+
+    // Text-to-Speech Voice Generator (Free)
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'hi-IN';
+
+        const voiceType = document.getElementById('voiceTypeSelect').value;
+        const voiceSpeed = parseFloat(document.getElementById('voiceSpeedSelect').value) || 1;
+        utterance.rate = voiceSpeed;
+
+        if (voiceType === 'robot') utterance.pitch = 0.2;
+        else if (voiceType === 'man') utterance.pitch = 0.7;
+        else if (voiceType === 'woman') utterance.pitch = 1.4;
+        else utterance.pitch = 1.0;
+
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function sendAiMessage() {
+      const input = document.getElementById('aiUserInput');
+      const text = input.value.trim();
+      if (!text && !attachedImageSrc) return;
+
+      const chatBody = document.getElementById('aiChatBody');
+      
+      const userDiv = document.createElement('div');
+      userDiv.className = 'ai-msg user';
+      let msgHTML = text ? `<div>${text}</div>` : '';
+      if (attachedImageSrc) {
+        msgHTML += `<img src="${attachedImageSrc}" alt="Uploaded">`;
+      }
+      userDiv.innerHTML = msgHTML;
+      chatBody.appendChild(userDiv);
+      
+      input.value = '';
+      removeImage();
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      setTimeout(() => {
+        let botReply = "सॉफ्टोरा एआई ने आपकी बात सुन ली है। हमारे सभी डिजिटल और सॉफ्टवेयर समाधान आपके बिजनेस के लिए उपलब्ध हैं।";
+        
+        if(text.toLowerCase().includes('सॉफ्टवेयर') || text.toLowerCase().includes('software')) {
+          botReply = "हम बिलिंग, स्टॉक और कस्टम बिजनेस सॉफ्टवेयर फ्री कंसल्टेशन के साथ तैयार करते हैं!";
+        }
+
+        const botDiv = document.createElement('div');
+        botDiv.className = 'ai-msg bot';
+        botDiv.innerText = botReply;
+        chatBody.appendChild(botDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+
+        speakText(botReply);
+      }, 900);
+    }
+
+    function handleAiEnter(e) {
+      if (e.key === 'Enter') {
+        sendAiMessage();
+      }
+    }
+
+    let currentOpenModal = null;
+
     function openModal(modalId) {
       const modal = document.getElementById(modalId);
-      if (modal) modal.style.display = 'block';
+      if (modal) {
+        modal.style.display = 'block';
+        currentOpenModal = modalId;
+      }
     }
 
     function closeModal(modalId) {
       const modal = document.getElementById(modalId);
-      if (modal) modal.style.display = 'none';
+      if (modal && modal.style.display === 'block') {
+        modal.style.display = 'none';
+        currentOpenModal = null;
+      }
     }
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('aiDropdownMenu');
+      if (!e.target.closest('.ai-top-btn') && dropdown.style.display === 'flex') {
+        dropdown.style.display = 'none';
+      }
+    });
   </script>
 
 </body>
