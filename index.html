@@ -29,20 +29,17 @@
     .glass-card { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(226, 232, 240, 0.8); }
     .hero-glow { background: radial-gradient(circle, rgba(26,115,232,0.08) 0%, rgba(255,255,255,0) 70%); }
     
-    /* Force 2-Column layout everywhere (Computers and all mobile phones) */
-    .force-grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem;
-    }
+    /* Modal visibility rules */
+    .custom-modal { display: none !important; }
+    .custom-modal.is-open { display: flex !important; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
 
   <!-- CONTACT POPUP MODAL -->
-  <div id="contactModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10001] hidden items-center justify-center p-4">
+  <div id="contactModal" class="custom-modal fixed inset-0 bg-black/50 backdrop-blur-sm z-[10001] items-center justify-center p-4">
     <div class="bg-white rounded-2xl p-6 max-w-md w-full relative shadow-2xl">
-      <button onclick="closeContactModal()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold">&times;</button>
+      <button onclick="closeModal('contactModal')" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold cursor-pointer">&times;</button>
       <h2 class="text-xl font-bold mb-4 text-gray-900">Get in Touch</h2>
       <p class="text-sm text-gray-500 mb-4">Softora Engineering Team</p>
       
@@ -58,19 +55,19 @@
           <i class="fas fa-envelope text-googleBlue mt-1"></i>
           <div>
             <p class="font-semibold">Email</p>
-            <p class="text-gray-600">rohanmrj75@gmail.com</p>
+            <p class="text-gray-600">softoramrj@gmail.com</p>
           </div>
         </div>
         <div class="flex items-start gap-3">
           <i class="fas fa-map-marker-alt text-googleBlue mt-1"></i>
           <div>
             <p class="font-semibold">Address / Location</p>
-            <p class="text-gray-600">Mau Pakar, Maharajganj Nagar Palika Parishad, Maharajganj</p>
+            <p class="text-gray-600">Maharajganj</p>
           </div>
         </div>
       </div>
 
-      <a href="https://wa.me/919792299575" target="_blank" class="w-full bg-[#25D366] text-white py-2.5 px-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition">
+      <a href="https://wa.me/919792299575" target="_blank" class="w-full bg-[#25D366] text-white py-2.5 px-4 rounded-xl font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition cursor-pointer">
         <i class="fab fa-whatsapp text-lg"></i> Chat Instantly on WhatsApp
       </a>
     </div>
@@ -86,115 +83,112 @@
         <span class="hidden sm:inline-flex items-center gap-1.5 text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full text-xs">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Systems Online
         </span>
-        <button onclick="openContactModal()" class="bg-googleBlue text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-600 transition">Contact</button>
+        <button onclick="openModal('contactModal')" class="bg-googleBlue text-white px-4 py-2 rounded-lg shadow-sm hover:bg-blue-600 transition cursor-pointer">Contact</button>
       </div>
     </div>
   </header>
 
   <!-- HERO SECTION -->
   <main class="flex-1 hero-glow">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 text-center">
-      <span class="inline-block bg-blue-50 text-googleBlue font-semibold px-4 py-1.5 rounded-full text-xs mb-6 uppercase tracking-wider">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-24 text-center">
+      <span class="inline-block bg-blue-50 text-googleBlue font-semibold px-4 py-1.5 rounded-full text-xs mb-4 uppercase tracking-wider">
         Software & Web Engineering Studio
       </span>
-      <h1 class="text-3xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6 max-w-4xl mx-auto leading-tight">
-        Build Your Digital Future with <span class="text-googleBlue">Softora</span>
+      
+      <!-- Exactly 2 Lines: Line 1 = "Build Your Digital Future with", Line 2 = "Softora" -->
+      <h1 class="text-2xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-6 max-w-5xl mx-auto leading-snug sm:leading-tight">
+        <span class="block text-xl sm:text-5xl font-semibold text-gray-800">Build Your Digital Future with</span>
+        <span class="block font-black mt-2 text-3xl sm:text-6xl">
+          <span class="text-googleBlue">S</span><span class="text-googleRed">o</span><span class="text-googleYellow">f</span><span class="text-googleBlue">t</span><span class="text-googleGreen">o</span><span class="text-googleRed">r</span><span class="text-googleBlue">a</span>
+        </span>
       </h1>
-      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+
+      <p class="text-sm sm:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
         The ultimate destination for high-performance websites, billing software, and mobile apps for businesses, shops, and startups.
       </p>
 
-      <!-- SEARCH BOX -->
-      <div class="max-w-xl mx-auto mb-16">
-        <div class="relative flex items-center shadow-lg rounded-2xl overflow-hidden border border-gray-200 bg-white">
-          <span class="pl-4 sm:pl-5 text-gray-400"><i class="fas fa-search"></i></span>
-          <input type="text" id="serviceSearch" onkeyup="filterServices()" placeholder="Search services..." class="w-full py-3.5 sm:py-4 px-3 sm:px-4 text-sm focus:outline-none text-gray-800 placeholder-gray-400">
-          <button onclick="filterServices()" class="bg-googleBlue text-white px-4 sm:px-6 py-3.5 sm:py-4 font-semibold text-sm hover:bg-blue-600 transition">Search</button>
-        </div>
-      </div>
-
-      <!-- SERVICES GRID (Strictly 2 Columns: 2 Upper, 2 Lower on all screens) -->
+      <!-- SERVICES GRID (2x2 Grid for both Phone and PC) -->
       <div class="text-left max-w-7xl mx-auto">
         <div class="flex items-center justify-between mb-8">
           <div>
             <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Our Core Services</h2>
-            <p class="text-xs sm:text-sm text-gray-500">Click any service to explore features</p>
+            <p class="text-xs sm:text-sm text-gray-500">Click any service to explore colorful features & solutions</p>
           </div>
-          <span class="text-xs font-semibold bg-blue-50 text-googleBlue px-3 py-1 rounded-lg">4 Solutions</span>
+          <span class="text-xs font-semibold bg-blue-50 text-googleBlue px-3 py-1 rounded-lg">4 Elite Solutions</span>
         </div>
 
-        <div id="servicesContainer" class="force-grid-2">
+        <div class="grid grid-cols-2 gap-3 sm:gap-6">
           <!-- Card 1 -->
-          <div data-name="website development web ecommerce portfolio shop" onclick="openModal('view-web')" class="service-card glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleBlue transition group">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-blue-50 text-googleBlue flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 group-hover:bg-googleBlue group-hover:text-white transition shadow-sm">
+          <div onclick="openModal('view-web')" class="glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleBlue transition group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-googleBlue flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 group-hover:bg-googleBlue group-hover:text-white transition">
               <i class="fas fa-globe"></i>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Website Dev</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">Modern websites for local shops, businesses & e-commerce stores.</p>
-            <span class="text-[11px] sm:text-xs font-semibold text-googleBlue flex items-center gap-1">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
+            <h3 class="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Website Development</h3>
+            <p class="text-[11px] sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">Modern, responsive, and blazing-fast websites for local shops, businesses & e-commerce stores.</p>
+            <span class="text-[10px] sm:text-xs font-semibold text-googleBlue flex items-center gap-1">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></span>
           </div>
 
           <!-- Card 2 -->
-          <div data-name="software billing pos inventory stock accounting" onclick="openModal('view-software')" class="service-card glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleRed transition group">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-red-50 text-googleRed flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 group-hover:bg-googleRed group-hover:text-white transition shadow-sm">
+          <div onclick="openModal('view-software')" class="glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleRed transition group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-red-50 text-googleRed flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 group-hover:bg-googleRed group-hover:text-white transition">
               <i class="fas fa-laptop-code"></i>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
-              <span class="text-googleBlue">S</span><span class="text-googleRed">o</span><span class="text-googleYellow">ft</span><span class="text-googleBlue">wa</span><span class="text-googleGreen">re</span>
+            <h3 class="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">
+              <span class="text-googleBlue">S</span><span class="text-googleRed">o</span><span class="text-googleYellow">ft</span><span class="text-googleBlue">wa</span><span class="text-googleGreen">re</span> Page
             </h3>
-            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">Advanced billing, stock tracking, and automated accounting solutions.</p>
-            <span class="text-[11px] sm:text-xs font-semibold text-googleRed flex items-center gap-1">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
+            <p class="text-[11px] sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">Advanced billing, stock tracking, inventory, and automated accounting software solutions.</p>
+            <span class="text-[10px] sm:text-xs font-semibold text-googleRed flex items-center gap-1">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></span>
           </div>
 
           <!-- Card 3 -->
-          <div data-name="mobile app android ios ordering customer staff" onclick="openModal('view-app')" class="service-card glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleYellow transition group">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-yellow-50 text-googleYellow flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 group-hover:bg-googleYellow group-hover:text-white transition shadow-sm">
+          <div onclick="openModal('view-app')" class="glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleYellow transition group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-yellow-50 text-googleYellow flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 group-hover:bg-googleYellow group-hover:text-white transition">
               <i class="fas fa-mobile-alt"></i>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Mobile Apps</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">Custom Android & iOS mobile applications for online ordering.</p>
-            <span class="text-[11px] sm:text-xs font-semibold text-googleYellow flex items-center gap-1">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
+            <h3 class="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">Mobile App Page</h3>
+            <p class="text-[11px] sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">Custom Android & iOS mobile applications for online ordering and customer management.</p>
+            <span class="text-[10px] sm:text-xs font-semibold text-googleYellow flex items-center gap-1">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></span>
           </div>
 
           <!-- Card 4 -->
-          <div data-name="seo digital marketing google maps promotion ads" onclick="openModal('view-seo')" class="service-card glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleGreen transition group">
-            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-green-50 text-googleGreen flex items-center justify-center text-xl sm:text-2xl mb-3 sm:mb-4 group-hover:bg-googleGreen group-hover:text-white transition shadow-sm">
+          <div onclick="openModal('view-seo')" class="glass-card rounded-2xl p-4 sm:p-6 cursor-pointer hover:shadow-xl hover:border-googleGreen transition group">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-50 text-googleGreen flex items-center justify-center text-lg sm:text-xl mb-3 sm:mb-4 group-hover:bg-googleGreen group-hover:text-white transition">
               <i class="fas fa-chart-line"></i>
             </div>
-            <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">SEO & Digital</h3>
-            <p class="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">Google Maps ranking, local SEO, and digital marketing campaigns.</p>
-            <span class="text-[11px] sm:text-xs font-semibold text-googleGreen flex items-center gap-1">Explore <i class="fas fa-arrow-right text-[10px]"></i></span>
+            <h3 class="text-sm sm:text-lg font-bold text-gray-900 mb-1 sm:mb-2">SEO & Digital Page</h3>
+            <p class="text-[11px] sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">Google Maps ranking, local SEO, and powerful digital marketing promotional campaigns.</p>
+            <span class="text-[10px] sm:text-xs font-semibold text-googleGreen flex items-center gap-1">Explore Details <i class="fas fa-arrow-right text-[10px]"></i></span>
           </div>
         </div>
       </div>
 
       <!-- LEAD CAPTURE SECTION -->
-      <div class="max-w-3xl mx-auto mt-24 bg-white rounded-3xl p-6 sm:p-12 shadow-xl border border-gray-100 text-left">
+      <div class="max-w-3xl mx-auto mt-20 bg-white rounded-3xl p-6 sm:p-12 shadow-xl border border-gray-100 text-left">
         <div class="text-center mb-8">
           <span class="bg-blue-50 text-googleBlue px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Direct Application / Inquiry</span>
           <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-3">Get Your Custom Solution</h2>
-          <p class="text-gray-500 text-sm mt-1">Direct inquiries will be sent straight to <span class="text-googleBlue font-semibold">rohanmrj75@gmail.com</span></p>
+          <p class="text-gray-500 text-sm mt-1">Direct inquiries will be sent straight to <span class="text-googleBlue font-semibold">softoramrj@gmail.com</span></p>
         </div>
 
-        <form action="https://formspree.io/f/rohanmrj75@gmail.com" method="POST" class="space-y-4">
+        <form action="https://formspree.io/f/softoramrj@gmail.com" method="POST" class="space-y-4">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Your Name / Business Name</label>
-              <input type="text" name="name" required placeholder="e.g. Rohan / Sky Solara" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
+              <input type="text" name="name" required placeholder="Softora" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
             </div>
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Mobile Number</label>
-              <input type="tel" name="phone" required placeholder="+91 9792299575" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
+              <input type="tel" name="phone" required placeholder="+91" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
             </div>
           </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Email Address</label>
-              <input type="email" name="email" required placeholder="rohanmrj75@gmail.com" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
+              <input type="email" name="email" required placeholder="softoramrj@gmail.com" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
             </div>
             <div>
               <label class="block text-xs font-semibold text-gray-700 mb-1">Address / Location</label>
-              <input type="text" name="address" required placeholder="Mau Pakar, Maharajganj" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
+              <input type="text" name="address" required placeholder="Maharajganj" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue">
             </div>
           </div>
           <div>
@@ -210,7 +204,7 @@
             <label class="block text-xs font-semibold text-gray-700 mb-1">Project Details / Message</label>
             <textarea name="message" rows="3" placeholder="Write your requirements here..." class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-googleBlue"></textarea>
           </div>
-          <button type="submit" class="w-full bg-googleBlue text-white py-3.5 rounded-xl font-bold text-sm shadow-lg hover:bg-blue-600 transition flex items-center justify-center gap-2">
+          <button type="submit" class="w-full bg-googleBlue text-white py-3.5 rounded-xl font-bold text-sm shadow-lg hover:bg-blue-600 transition flex items-center justify-center gap-2 cursor-pointer">
             <i class="fas fa-paper-plane"></i> Submit Application / Send Inquiry
           </button>
         </form>
@@ -219,17 +213,17 @@
     </div>
   </main>
 
-  <!-- MODALS -->
-  <div id="view-web" class="fixed inset-0 bg-white z-[9999] overflow-y-auto hidden p-6 lg:p-12">
-    <div class="max-w-4xl mx-auto">
-      <button onclick="closeModal('view-web')" class="bg-googleBlue text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+  <!-- 1. WEBSITE MODAL -->
+  <div id="view-web" class="custom-modal fixed inset-0 bg-white z-[9999] overflow-y-auto p-6 lg:p-12">
+    <div class="max-w-4xl mx-auto w-full">
+      <button onclick="closeModal('view-web')" class="bg-googleBlue text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2 cursor-pointer"><i class="fas fa-arrow-left"></i> Back</button>
       <div class="flex items-center gap-4 border-b pb-6 mb-6">
         <i class="fas fa-globe text-4xl text-googleBlue"></i>
         <h1 class="text-3xl font-bold text-gray-900">Website Development Solutions</h1>
       </div>
       <p class="text-gray-600 leading-relaxed mb-8">Explore our stunning, high-performance website categories designed to supercharge your digital presence.</p>
       
-      <div class="force-grid-2 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         <div onclick="openSubDetail('E-Commerce Platform', 'Full-featured online store with secure checkout, category filters, and product inventory management.')" class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-6 rounded-3xl cursor-pointer shadow-lg hover:scale-[1.02] transition">
           <i class="fas fa-shopping-cart text-3xl mb-3 opacity-90"></i>
           <h3 class="font-bold text-xl mb-2">E-Commerce Store</h3>
@@ -243,21 +237,22 @@
       </div>
 
       <div class="bg-blue-50 border border-blue-100 rounded-2xl p-8 text-center">
-        <button onclick="openContactModal()" class="bg-googleBlue text-white px-6 py-3 rounded-xl font-semibold shadow-md">Book Website Service</button>
+        <button onclick="closeAllAndOpenContact()" class="bg-googleBlue text-white px-6 py-3 rounded-xl font-semibold shadow-md cursor-pointer">Book Website Service</button>
       </div>
     </div>
   </div>
 
-  <div id="view-software" class="fixed inset-0 bg-white z-[9999] overflow-y-auto hidden p-6 lg:p-12">
-    <div class="max-w-4xl mx-auto">
-      <button onclick="closeModal('view-software')" class="bg-googleRed text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+  <!-- 2. SOFTWARE MODAL -->
+  <div id="view-software" class="custom-modal fixed inset-0 bg-white z-[9999] overflow-y-auto p-6 lg:p-12">
+    <div class="max-w-4xl mx-auto w-full">
+      <button onclick="closeModal('view-software')" class="bg-googleRed text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2 cursor-pointer"><i class="fas fa-arrow-left"></i> Back</button>
       <div class="flex items-center gap-4 border-b pb-6 mb-6">
         <i class="fas fa-laptop-code text-4xl text-googleRed"></i>
         <h1 class="text-3xl font-bold text-gray-900">Software & Billing Solutions</h1>
       </div>
       <p class="text-gray-600 leading-relaxed mb-8">Automate your shop operations, invoicing, and inventory with our powerful software tools.</p>
 
-      <div class="force-grid-2 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         <div onclick="openSubDetail('GST Billing & POS Software', 'Fast printing thermal billing system with automated GST reports and barcode scanning.')" class="bg-gradient-to-br from-red-500 to-pink-600 text-white p-6 rounded-3xl cursor-pointer shadow-lg hover:scale-[1.02] transition">
           <i class="fas fa-file-invoice-dollar text-3xl mb-3 opacity-90"></i>
           <h3 class="font-bold text-xl mb-2">GST Billing POS</h3>
@@ -271,21 +266,22 @@
       </div>
 
       <div class="bg-red-50 border border-red-100 rounded-2xl p-8 text-center">
-        <button onclick="openContactModal()" class="bg-googleRed text-white px-6 py-3 rounded-xl font-semibold shadow-md">Book Software Service</button>
+        <button onclick="closeAllAndOpenContact()" class="bg-googleRed text-white px-6 py-3 rounded-xl font-semibold shadow-md cursor-pointer">Book Software Service</button>
       </div>
     </div>
   </div>
 
-  <div id="view-app" class="fixed inset-0 bg-white z-[9999] overflow-y-auto hidden p-6 lg:p-12">
-    <div class="max-w-4xl mx-auto">
-      <button onclick="closeModal('view-app')" class="bg-googleYellow text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+  <!-- 3. MOBILE APP MODAL -->
+  <div id="view-app" class="custom-modal fixed inset-0 bg-white z-[9999] overflow-y-auto p-6 lg:p-12">
+    <div class="max-w-4xl mx-auto w-full">
+      <button onclick="closeModal('view-app')" class="bg-googleYellow text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2 cursor-pointer"><i class="fas fa-arrow-left"></i> Back</button>
       <div class="flex items-center gap-4 border-b pb-6 mb-6">
         <i class="fas fa-mobile-alt text-4xl text-googleYellow"></i>
         <h1 class="text-3xl font-bold text-gray-900">Mobile App Development</h1>
       </div>
       <p class="text-gray-600 leading-relaxed mb-8">Engage customers directly on their smartphones with custom Android and iOS applications.</p>
       
-      <div class="force-grid-2 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         <div onclick="openSubDetail('Store Ordering App', 'Custom branded customer app for mobile shopping and push notifications.')" class="bg-gradient-to-br from-amber-500 to-yellow-600 text-white p-6 rounded-3xl cursor-pointer shadow-lg hover:scale-[1.02] transition">
           <i class="fas fa-shopping-bag text-3xl mb-3 opacity-90"></i>
           <h3 class="font-bold text-xl mb-2">Customer Shopping App</h3>
@@ -299,21 +295,22 @@
       </div>
 
       <div class="bg-yellow-50 border border-yellow-100 rounded-2xl p-8 text-center">
-        <button onclick="openContactModal()" class="bg-googleYellow text-white px-6 py-3 rounded-xl font-semibold shadow-md">Book App Service</button>
+        <button onclick="closeAllAndOpenContact()" class="bg-googleYellow text-white px-6 py-3 rounded-xl font-semibold shadow-md cursor-pointer">Book App Service</button>
       </div>
     </div>
   </div>
 
-  <div id="view-seo" class="fixed inset-0 bg-white z-[9999] overflow-y-auto hidden p-6 lg:p-12">
-    <div class="max-w-4xl mx-auto">
-      <button onclick="closeModal('view-seo')" class="bg-googleGreen text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2"><i class="fas fa-arrow-left"></i> Back</button>
+  <!-- 4. SEO MODAL -->
+  <div id="view-seo" class="custom-modal fixed inset-0 bg-white z-[9999] overflow-y-auto p-6 lg:p-12">
+    <div class="max-w-4xl mx-auto w-full">
+      <button onclick="closeModal('view-seo')" class="bg-googleGreen text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 flex items-center gap-2 cursor-pointer"><i class="fas fa-arrow-left"></i> Back</button>
       <div class="flex items-center gap-4 border-b pb-6 mb-6">
         <i class="fas fa-chart-line text-4xl text-googleGreen"></i>
         <h1 class="text-3xl font-bold text-gray-900">SEO & Digital Marketing</h1>
       </div>
       <p class="text-gray-600 leading-relaxed mb-8">Dominate local search results and attract more customers to your business.</p>
       
-      <div class="force-grid-2 mb-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         <div onclick="openSubDetail('Google Maps Ranking', 'Rank your business #1 on Google Maps in Maharajganj and surrounding regions.')" class="bg-gradient-to-br from-emerald-500 to-green-600 text-white p-6 rounded-3xl cursor-pointer shadow-lg hover:scale-[1.02] transition">
           <i class="fas fa-map-marker-alt text-3xl mb-3 opacity-90"></i>
           <h3 class="font-bold text-xl mb-2">Google Maps SEO</h3>
@@ -327,18 +324,18 @@
       </div>
 
       <div class="bg-green-50 border border-green-100 rounded-2xl p-8 text-center">
-        <button onclick="openContactModal()" class="bg-googleGreen text-white px-6 py-3 rounded-xl font-semibold shadow-md">Book SEO Service</button>
+        <button onclick="closeAllAndOpenContact()" class="bg-googleGreen text-white px-6 py-3 rounded-xl font-semibold shadow-md cursor-pointer">Book SEO Service</button>
       </div>
     </div>
   </div>
 
   <!-- SUB-DETAIL POPUP -->
-  <div id="subDetailModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10002] hidden items-center justify-center p-4">
+  <div id="subDetailModal" class="custom-modal fixed inset-0 bg-black/50 backdrop-blur-sm z-[10002] items-center justify-center p-4">
     <div class="bg-white rounded-2xl p-6 max-w-md w-full relative shadow-2xl text-left">
-      <button onclick="closeSubDetail()" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold">&times;</button>
+      <button onclick="closeModal('subDetailModal')" class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-gray-600 font-bold cursor-pointer">&times;</button>
       <h3 id="subTitle" class="text-lg font-bold text-gray-900 mb-2"></h3>
       <p id="subDesc" class="text-sm text-gray-600 mb-6 leading-relaxed"></p>
-      <button onclick="closeSubDetail(); openContactModal();" class="w-full bg-googleBlue text-white py-2.5 rounded-xl font-semibold text-sm">Book This Service</button>
+      <button onclick="closeAllAndOpenContact()" class="w-full bg-googleBlue text-white py-2.5 rounded-xl font-semibold text-sm cursor-pointer">Book This Service</button>
     </div>
   </div>
 
@@ -347,44 +344,37 @@
     &copy; Softora. All rights reserved.
   </footer>
 
-  <!-- JAVASCRIPT -->
+  <!-- GLOBAL JAVASCRIPT FUNCTIONS -->
   <script>
     function openModal(modalId) {
-      document.getElementById(modalId).classList.remove('hidden');
-      document.getElementById(modalId).classList.add('block');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('is-open');
+      }
     }
+
     function closeModal(modalId) {
-      document.getElementById(modalId).classList.remove('block');
-      document.getElementById(modalId).classList.add('hidden');
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('is-open');
+      }
     }
-    function openContactModal() {
-      document.getElementById('contactModal').classList.remove('hidden');
-      document.getElementById('contactModal').classList.add('flex');
-    }
-    function closeContactModal() {
-      document.getElementById('contactModal').classList.add('hidden');
-      document.getElementById('contactModal').classList.remove('flex');
-    }
+
     function openSubDetail(title, desc) {
       document.getElementById('subTitle').innerText = title;
       document.getElementById('subDesc').innerText = desc;
-      document.getElementById('subDetailModal').classList.remove('hidden');
-      document.getElementById('subDetailModal').classList.add('flex');
+      const modal = document.getElementById('subDetailModal');
+      if (modal) {
+        modal.classList.add('is-open');
+      }
     }
-    function closeSubDetail() {
-      document.getElementById('subDetailModal').classList.add('hidden');
-      document.getElementById('subDetailModal').classList.remove('flex');
-    }
-    function filterServices() {
-      let query = document.getElementById('serviceSearch').value.toLowerCase();
-      let cards = document.getElementsByClassName('service-card');
-      for (let i = 0; i < cards.length; i++) {
-        let name = cards[i].getAttribute('data-name');
-        if (name.includes(query)) {
-          cards[i].style.display = "block";
-        } else {
-          cards[i].style.display = "none";
-        }
+
+    function closeAllAndOpenContact() {
+      const modals = document.querySelectorAll('.custom-modal');
+      modals.forEach(m => m.classList.remove('is-open'));
+      const contactModal = document.getElementById('contactModal');
+      if (contactModal) {
+        contactModal.classList.add('is-open');
       }
     }
   </script>
